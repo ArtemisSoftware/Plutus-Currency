@@ -1,4 +1,4 @@
-package data.models
+package domain.models
 
 data class Currency(
     val code: String,
