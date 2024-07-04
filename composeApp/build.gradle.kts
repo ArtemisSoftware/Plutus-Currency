@@ -51,6 +51,7 @@ kotlin {
 
             implementation(libs.voyager.navigator)
             implementation(libs.voyager.screen.model)
+            implementation(libs.voyager.koin)
 
             implementation(libs.multiplatform.settings.no.arg)
             implementation(libs.multiplatform.settings.coroutines)
