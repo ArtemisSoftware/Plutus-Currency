@@ -20,12 +20,12 @@ import ui.theme.headerColor
 @Composable
 internal fun HomeHeader(
     status: RateStatus,
-    source: RequestState<CurrencyDto>,
-    target: RequestState<CurrencyDto>,
-    amount: Double,
-    onAmountChange: (Double) -> Unit,
+//    source: RequestState<CurrencyDto>,
+//    target: RequestState<CurrencyDto>,
+//    amount: Double,
+//    onAmountChange: (Double) -> Unit,
     onRatesRefresh: () -> Unit,
-    onSwitchClick: () -> Unit,
+//    onSwitchClick: () -> Unit,
 //    onCurrencyTypeSelect: (CurrencyType) -> Unit
 ) {
     Column(
