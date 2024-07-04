@@ -18,6 +18,7 @@ kotlinSerialization = "1.9.22"
 ktor = "2.2.1"
 voyager = "1.0.0"
 multiplatformSettings = "1.1.1"
+date-time = "0.5.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -48,6 +49,9 @@ voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.
 
 multiplatform-settings-no-arg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettings" }
 multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-settings-coroutines", version.ref = "multiplatformSettings" }
+
+
+kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "date-time" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
