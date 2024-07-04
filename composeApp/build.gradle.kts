@@ -55,6 +55,8 @@ kotlin {
             implementation(libs.multiplatform.settings.coroutines)
 
             implementation(libs.kotlinx.datetime)
+
+            implementation(libs.koin.core)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
