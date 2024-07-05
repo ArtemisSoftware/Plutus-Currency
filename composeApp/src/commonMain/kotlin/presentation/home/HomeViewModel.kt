@@ -14,11 +14,11 @@ import domain.RequestState
 import domain.models.RateStatus
 import domain.repository.MongoRepository
 import domain.repository.PreferencesRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
-import kotlinx.datetime.DateTimeUnit
-import kotlinx.datetime.minus
 import kotlin.time.Duration.Companion.days
 
 class HomeViewModel(
@@ -44,6 +44,8 @@ class HomeViewModel(
     init {
         screenModelScope.launch {
             fetchNewRates()
+            readSourceCurrency()
+            readTargetCurrency()
         }
     }
 
@@ -67,6 +69,32 @@ class HomeViewModel(
 //                screenModelScope.launch {
 //                    fetchNewRates()
 //                }
+            }
+        }
+    }
+
+    private fun readTargetCurrency() {
+        screenModelScope.launch(Dispatchers.Main) {
+            preferencesRepository.readTargetCurrencyCode().collectLatest { currencyCode ->
+                val selectedCurrency = _allCurrencies.find { it.code == currencyCode.name }
+                if (selectedCurrency != null) {
+                    _targetCurrency.value = RequestState.Success(data = selectedCurrency)
+                } else {
+                    _targetCurrency.value = RequestState.Error(message = "Couldn't find the selected currency.")
+                }
+            }
+        }
+    }
+
+    private fun readSourceCurrency() {
+        screenModelScope.launch(Dispatchers.Main) {
+            preferencesRepository.readSourceCurrencyCode().collectLatest { currencyCode ->
+                val selectedCurrency = _allCurrencies.find { it.code == currencyCode.name }
+                if (selectedCurrency != null) {
+                    _sourceCurrency.value = RequestState.Success(data = selectedCurrency)
+                } else {
+                    _sourceCurrency.value = RequestState.Error(message = "Couldn't find the selected currency.")
+                }
             }
         }
     }
