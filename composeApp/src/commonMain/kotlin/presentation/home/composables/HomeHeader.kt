@@ -20,12 +20,12 @@ import ui.theme.headerColor
 @Composable
 internal fun HomeHeader(
     status: RateStatus,
-//    source: RequestState<CurrencyDto>,
-//    target: RequestState<CurrencyDto>,
+    source: RequestState<CurrencyDto>,
+    target: RequestState<CurrencyDto>,
 //    amount: Double,
 //    onAmountChange: (Double) -> Unit,
     onRatesRefresh: () -> Unit,
-//    onSwitchClick: () -> Unit,
+    onSwitchClick: () -> Unit,
 //    onCurrencyTypeSelect: (CurrencyType) -> Unit
 ) {
     Column(
@@ -41,13 +41,13 @@ internal fun HomeHeader(
             status = status,
             onRatesRefresh = onRatesRefresh
         )
-//        Spacer(modifier = Modifier.height(24.dp))
-//        CurrencyInputs(
-//            source = source,
-//            target = target,
-//            onSwitchClick = onSwitchClick,
+        Spacer(modifier = Modifier.height(24.dp))
+        CurrencyInputs(
+            source = source,
+            target = target,
+            onSwitchClick = onSwitchClick,
 //            onCurrencyTypeSelect = onCurrencyTypeSelect
-//        )
+        )
 //        Spacer(modifier = Modifier.height(24.dp))
 //        AmountInput(
 //            amount = amount,
