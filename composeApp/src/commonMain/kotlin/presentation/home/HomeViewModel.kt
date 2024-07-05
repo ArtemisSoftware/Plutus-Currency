@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
+import data.CurrencyEntity
 import data.dto.CurrencyDto
 import data.mappers.toDto
 import data.mappers.toEntity
@@ -38,8 +39,8 @@ class HomeViewModel(
         mutableStateOf(RequestState.Idle)
     val targetCurrency: State<RequestState<CurrencyDto>> = _targetCurrency
 
-    private var _allCurrencies = mutableStateListOf<CurrencyDto>()
-    val allCurrencies: List<CurrencyDto> = _allCurrencies
+    private var _allCurrencies = mutableStateListOf<CurrencyEntity>()
+    val allCurrencies: List<CurrencyEntity> = _allCurrencies
 
     init {
         screenModelScope.launch {
@@ -81,7 +82,7 @@ class HomeViewModel(
             preferencesRepository.readTargetCurrencyCode().collectLatest { currencyCode ->
                 val selectedCurrency = _allCurrencies.find { it.code == currencyCode.name }
                 if (selectedCurrency != null) {
-                    _targetCurrency.value = RequestState.Success(data = selectedCurrency)
+                    _targetCurrency.value = RequestState.Success(data = selectedCurrency.toDto())
                 } else {
                     _targetCurrency.value = RequestState.Error(message = "Couldn't find the selected currency.")
                 }
@@ -94,7 +95,7 @@ class HomeViewModel(
             preferencesRepository.readSourceCurrencyCode().collectLatest { currencyCode ->
                 val selectedCurrency = _allCurrencies.find { it.code == currencyCode.name }
                 if (selectedCurrency != null) {
-                    _sourceCurrency.value = RequestState.Success(data = selectedCurrency)
+                    _sourceCurrency.value = RequestState.Success(data = selectedCurrency.toDto())
                 } else {
                     _sourceCurrency.value = RequestState.Error(message = "Couldn't find the selected currency.")
                 }
@@ -110,7 +111,7 @@ class HomeViewModel(
                 if (localCache.getSuccessData().isNotEmpty()) {
                     println("HomeViewModel: DATABASE IS FULL")
                     _allCurrencies.clear()
-                    _allCurrencies.addAll(localCache.getSuccessData().map { it.toDto() })
+                    _allCurrencies.addAll(localCache.getSuccessData())
                     if (!preferencesRepository.isDataFresh(dayNowForBackEnd())) {
                         println("HomeViewModel: DATA NOT FRESH")
                         cacheTheData()
@@ -138,7 +139,7 @@ class HomeViewModel(
                 if (localCache.getSuccessData().isNotEmpty()) {
                     println("HomeViewModel: DATABASE IS FULL")
                     _allCurrencies.clear()
-                    _allCurrencies.addAll(localCache.getSuccessData().map { it.toDto() })
+                    _allCurrencies.addAll(localCache.getSuccessData())
                     if (!preferencesRepository.isDataFresh(dayNowForBackEnd())) {
                         println("HomeViewModel: DATA NOT FRESH")
                         cacheTheData()
@@ -168,7 +169,7 @@ class HomeViewModel(
             }
             println("HomeViewModel: UPDATING _allCurrencies")
             _allCurrencies.clear()
-            _allCurrencies.addAll(fetchedData.getSuccessData())
+            _allCurrencies.addAll(fetchedData.getSuccessData().map { it.toEntity() })
         } else if (fetchedData.isError()) {
             println("HomeViewModel: FETCHING FAILED ${fetchedData.getErrorMessage()}")
         }

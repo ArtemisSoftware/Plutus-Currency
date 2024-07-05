@@ -32,6 +32,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import data.dto.CurrencyDto
+import domain.DisplayResult
 import domain.RequestState
 import domain.models.Currency
 import domain.models.CurrencyCode
@@ -134,43 +135,25 @@ fun RowScope.CurrencyView(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            if(currency.isSuccess()){
-                Icon(
-                    modifier = Modifier.size(24.dp),
-                    painter = painterResource(
-                        CurrencyCode.valueOf(currency.getSuccessData().code).flag
-                    ),
-                    tint = Color.Unspecified,
-                    contentDescription = "Country Flag"
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(
-                    text = CurrencyCode.valueOf(currency.getSuccessData().code).name,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.titleLarge.fontSize,
-                    color = Color.White
-                )
-            }
-
-//            currency.DisplayResult(
-//                onSuccess = { data ->
-//                    Icon(
-//                        modifier = Modifier.size(24.dp),
-//                        painter = painterResource(
-//                            CurrencyCode.valueOf(data.code).flag
-//                        ),
-//                        tint = Color.Unspecified,
-//                        contentDescription = "Country Flag"
-//                    )
-//                    Spacer(modifier = Modifier.width(8.dp))
-//                    Text(
-//                        text = CurrencyCode.valueOf(data.code).name,
-//                        fontWeight = FontWeight.Bold,
-//                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
-//                        color = Color.White
-//                    )
-//                }
-//            )
+            currency.DisplayResult(
+                onSuccess = { data ->
+                    Icon(
+                        modifier = Modifier.size(24.dp),
+                        painter = painterResource(
+                            CurrencyCode.valueOf(data.code).flag
+                        ),
+                        tint = Color.Unspecified,
+                        contentDescription = "Country Flag"
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = CurrencyCode.valueOf(data.code).name,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                        color = Color.White
+                    )
+                }
+            )
         }
     }
 }
