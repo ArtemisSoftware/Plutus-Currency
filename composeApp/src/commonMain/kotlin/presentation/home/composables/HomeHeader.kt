@@ -22,8 +22,8 @@ internal fun HomeHeader(
     status: RateStatus,
     source: RequestState<CurrencyDto>,
     target: RequestState<CurrencyDto>,
-//    amount: Double,
-//    onAmountChange: (Double) -> Unit,
+    amount: Double,
+    onAmountChange: (Double) -> Unit,
     onRatesRefresh: () -> Unit,
     onSwitchClick: () -> Unit,
 //    onCurrencyTypeSelect: (CurrencyType) -> Unit
@@ -48,10 +48,10 @@ internal fun HomeHeader(
             onSwitchClick = onSwitchClick,
 //            onCurrencyTypeSelect = onCurrencyTypeSelect
         )
-//        Spacer(modifier = Modifier.height(24.dp))
-//        AmountInput(
-//            amount = amount,
-//            onAmountChange = onAmountChange
-//        )
+        Spacer(modifier = Modifier.height(24.dp))
+        AmountInput(
+            amount = amount,
+            onAmountChange = onAmountChange
+        )
     }
 }
