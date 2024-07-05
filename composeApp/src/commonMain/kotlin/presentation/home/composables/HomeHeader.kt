@@ -13,6 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import data.dto.CurrencyDto
 import domain.RequestState
+import domain.models.CurrencyType
 import domain.models.RateStatus
 import getPlatform
 import ui.theme.headerColor
@@ -26,7 +27,7 @@ internal fun HomeHeader(
     onAmountChange: (Double) -> Unit,
     onRatesRefresh: () -> Unit,
     onSwitchClick: () -> Unit,
-//    onCurrencyTypeSelect: (CurrencyType) -> Unit
+    onCurrencyTypeSelect: (CurrencyType) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -46,7 +47,7 @@ internal fun HomeHeader(
             source = source,
             target = target,
             onSwitchClick = onSwitchClick,
-//            onCurrencyTypeSelect = onCurrencyTypeSelect
+            onCurrencyTypeSelect = onCurrencyTypeSelect
         )
         Spacer(modifier = Modifier.height(24.dp))
         AmountInput(

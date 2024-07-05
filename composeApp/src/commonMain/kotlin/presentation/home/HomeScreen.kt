@@ -81,10 +81,10 @@ class HomeScreen : Screen {
                 onSwitchClick = {
                     viewModel.onTriggerEvent(HomeEvent.SwitchCurrencies)
                 },
-//                onCurrencyTypeSelect = { currencyType ->
-//                    selectedCurrencyType = currencyType
-//                    dialogOpened = true
-//                }
+                onCurrencyTypeSelect = { currencyType ->
+                    selectedCurrencyType = currencyType
+                    dialogOpened = true
+                }
             )
 //            HomeBody(
 //                source = sourceCurrency,

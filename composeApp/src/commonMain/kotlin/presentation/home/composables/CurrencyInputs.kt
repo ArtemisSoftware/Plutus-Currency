@@ -36,6 +36,7 @@ import domain.DisplayResult
 import domain.RequestState
 import domain.models.Currency
 import domain.models.CurrencyCode
+import domain.models.CurrencyType
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 import plutuscurrency.composeapp.generated.resources.Res
@@ -46,7 +47,7 @@ fun CurrencyInputs(
     source: RequestState<CurrencyDto>,
     target: RequestState<CurrencyDto>,
     onSwitchClick: () -> Unit,
-//    onCurrencyTypeSelect: (CurrencyType) -> Unit
+    onCurrencyTypeSelect: (CurrencyType) -> Unit
 ) {
     var animationStarted by remember { mutableStateOf(false) }
     val animatedRotation by animateFloatAsState(
@@ -63,13 +64,13 @@ fun CurrencyInputs(
             currency = source,
             onClick = {
                 if (source.isSuccess()) {
-//                    onCurrencyTypeSelect(
-//                        CurrencyType.Source(
-//                            currencyCode = CurrencyCode.valueOf(
-//                                source.getSuccessData().code
-//                            )
-//                        )
-//                    )
+                    onCurrencyTypeSelect(
+                        CurrencyType.Source(
+                            currencyCode = CurrencyCode.valueOf(
+                                source.getSuccessData().code
+                            )
+                        )
+                    )
                 }
             }
         )
@@ -97,13 +98,13 @@ fun CurrencyInputs(
             currency = target,
             onClick = {
                 if (target.isSuccess()) {
-//                    onCurrencyTypeSelect(
-//                        CurrencyType.Target(
-//                            currencyCode = CurrencyCode.valueOf(
-//                                target.getSuccessData().code
-//                            )
-//                        )
-//                    )
+                    onCurrencyTypeSelect(
+                        CurrencyType.Target(
+                            currencyCode = CurrencyCode.valueOf(
+                                target.getSuccessData().code
+                            )
+                        )
+                    )
                 }
             }
         )

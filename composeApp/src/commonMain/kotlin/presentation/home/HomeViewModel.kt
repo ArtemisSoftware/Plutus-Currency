@@ -16,6 +16,7 @@ import domain.models.RateStatus
 import domain.repository.MongoRepository
 import domain.repository.PreferencesRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -73,6 +74,12 @@ class HomeViewModel(
             }
             is HomeEvent.SwitchCurrencies -> {
                 switchCurrencies()
+            }
+            is HomeEvent.SaveSourceCurrencyCode -> {
+                saveSourceCurrencyCode(event.code)
+            }
+            is HomeEvent.SaveTargetCurrencyCode -> {
+                saveTargetCurrencyCode(event.code)
             }
         }
     }
@@ -188,5 +195,17 @@ class HomeViewModel(
         val target = _targetCurrency.value
         _sourceCurrency.value = target
         _targetCurrency.value = source
+    }
+
+    private fun saveSourceCurrencyCode(code: String) {
+        screenModelScope.launch(Dispatchers.IO) {
+            preferencesRepository.saveSourceCurrencyCode(code)
+        }
+    }
+
+    private fun saveTargetCurrencyCode(code: String) {
+        screenModelScope.launch(Dispatchers.IO) {
+            preferencesRepository.saveTargetCurrencyCode(code)
+        }
     }
 }
