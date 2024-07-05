@@ -70,6 +70,9 @@ class HomeViewModel(
 //                    fetchNewRates()
 //                }
             }
+            is HomeEvent.SwitchCurrencies -> {
+                switchCurrencies()
+            }
         }
     }
 
@@ -177,5 +180,12 @@ class HomeViewModel(
             )
         ) RateStatus.Fresh
         else RateStatus.Stale
+    }
+
+    private fun switchCurrencies() {
+        val source = _sourceCurrency.value
+        val target = _targetCurrency.value
+        _sourceCurrency.value = target
+        _targetCurrency.value = source
     }
 }

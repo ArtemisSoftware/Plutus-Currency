@@ -42,7 +42,7 @@ class HomeScreen : Screen {
                     )
                 },
                 onSwitchClick = {
-//                    viewModel.sendEvent(HomeEvent.SwitchCurrencies)
+                    viewModel.onTriggerEvent(HomeEvent.SwitchCurrencies)
                 },
 //                onCurrencyTypeSelect = { currencyType ->
 //                    selectedCurrencyType = currencyType
