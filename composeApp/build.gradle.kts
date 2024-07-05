@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.realm.plugin)
 }
 
 kotlin {
@@ -59,6 +60,8 @@ kotlin {
             implementation(libs.kotlinx.datetime)
 
             implementation(libs.koin.core)
+
+            implementation(libs.mongodb.realm)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
