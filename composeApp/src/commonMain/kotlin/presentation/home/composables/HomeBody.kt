@@ -25,7 +25,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -35,6 +34,7 @@ import ui.theme.headerColor
 import util.DoubleConverter
 import util.ExchangeUtil.calculateExchangeRate
 import util.ExchangeUtil.convert
+import util.FontUtil.GetBebasFontFamily
 
 
 @Composable
@@ -64,7 +64,7 @@ fun HomeBody(
                 modifier = Modifier.fillMaxWidth(),
                 text = "${(animatedExchangedAmount * 100).toLong() / 100.0}",
                 fontSize = 60.sp,
-//                fontFamily = GetBebasFontFamily(),
+                fontFamily = GetBebasFontFamily(),
                 color = if (isSystemInDarkTheme()) Color.White else Color.Black,
                 textAlign = TextAlign.Center
             )
