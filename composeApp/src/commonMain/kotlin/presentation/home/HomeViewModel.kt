@@ -184,7 +184,7 @@ class HomeViewModel(
 
     private suspend fun getRateStatus() {
         _rateStatus.value = if (preferencesRepository.isDataFresh(
-                currentTimestamp = Clock.System.now().toEpochMilliseconds()
+                currentTimestamp = dayNowForBackEnd()
             )
         ) RateStatus.Fresh
         else RateStatus.Stale

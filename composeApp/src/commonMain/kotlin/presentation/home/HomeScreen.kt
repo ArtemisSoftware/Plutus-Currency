@@ -14,6 +14,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import domain.models.CurrencyType
 import presentation.home.composables.CurrencyPickerDialog
+import presentation.home.composables.HomeBody
 import presentation.home.composables.HomeHeader
 import ui.theme.surfaceColor
 
@@ -86,11 +87,11 @@ class HomeScreen : Screen {
                     dialogOpened = true
                 }
             )
-//            HomeBody(
-//                source = sourceCurrency,
-//                target = targetCurrency,
-//                amount = amount
-//            )
+            HomeBody(
+                source = sourceCurrency,
+                target = targetCurrency,
+                amount = amount
+            )
         }
     }
 
