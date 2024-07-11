@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
+import cafe.adriel.voyager.navigator.tab.Tab
+import cafe.adriel.voyager.navigator.tab.TabOptions
 import domain.models.CurrencyType
 import presentation.currencies.CurrenciesScreen
 import presentation.home.composables.CurrencyPickerDialog
@@ -28,7 +30,7 @@ import presentation.home.composables.HomeBody
 import presentation.home.composables.HomeHeader
 import ui.theme.surfaceColor
 
-class HomeScreen : Screen {
+object HomeScreen : Tab {
     @Composable
     override fun Content() {
 
@@ -80,22 +82,6 @@ class HomeScreen : Screen {
                 .fillMaxSize()
                 .background(surfaceColor)
         ) {
-            Box(
-                Modifier.size(
-                    50.dp
-                ).background(Color.Blue)
-            )
-            IconButton(onClick = { navigator?.push(CurrenciesScreen()) }){
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = ""
-                )
-            }
-            Box(
-                Modifier.size(
-                    50.dp
-                ).background(Color.Red)
-            )
             HomeHeader(
                 status = rateStatus,
                 source = sourceCurrency,
@@ -123,4 +109,13 @@ class HomeScreen : Screen {
         }
     }
 
+    override val options: TabOptions
+        @Composable
+        get() = remember {
+            TabOptions(
+                index = 0u,
+                title = "Home",
+                icon = null
+            )
+        }
 }
