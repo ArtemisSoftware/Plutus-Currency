@@ -1,8 +1,14 @@
 package presentation.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -10,9 +16,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.getScreenModel
+import cafe.adriel.voyager.navigator.LocalNavigator
 import domain.models.CurrencyType
+import presentation.currencies.CurrenciesScreen
 import presentation.home.composables.CurrencyPickerDialog
 import presentation.home.composables.HomeBody
 import presentation.home.composables.HomeHeader
@@ -21,6 +31,8 @@ import ui.theme.surfaceColor
 class HomeScreen : Screen {
     @Composable
     override fun Content() {
+
+        val navigator = LocalNavigator.current
 
         val viewModel = getScreenModel<HomeViewModel>()
         val rateStatus by viewModel.rateStatus
@@ -68,6 +80,22 @@ class HomeScreen : Screen {
                 .fillMaxSize()
                 .background(surfaceColor)
         ) {
+            Box(
+                Modifier.size(
+                    50.dp
+                ).background(Color.Blue)
+            )
+            IconButton(onClick = { navigator?.push(CurrenciesScreen()) }){
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = ""
+                )
+            }
+            Box(
+                Modifier.size(
+                    50.dp
+                ).background(Color.Red)
+            )
             HomeHeader(
                 status = rateStatus,
                 source = sourceCurrency,
