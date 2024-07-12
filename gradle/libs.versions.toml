@@ -21,6 +21,8 @@ multiplatformSettings = "1.1.1"
 date-time = "0.5.0"
 koin = "3.5.3"
 realm = "2.0.0"
+peekaboo = "0.5.2"
+permissionsCompose = "0.18.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -67,6 +69,12 @@ multiplatform-settings-coroutines = { module = "com.russhwolf:multiplatform-sett
 
 
 kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "date-time" }
+
+peekaboo-ui = { module = "io.github.onseok:peekaboo-ui", version.ref = "peekaboo" }
+peekaboo-image-picker = { module = "io.github.onseok:peekaboo-image-picker", version.ref = "peekaboo" }
+
+permissions-compose = { module = "dev.icerock.moko:permissions-compose", version.ref = "permissionsCompose" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

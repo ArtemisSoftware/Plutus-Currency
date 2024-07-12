@@ -64,6 +64,9 @@ kotlin {
             implementation(libs.koin.core)
 
             implementation(libs.mongodb.realm)
+
+            implementation(libs.peekaboo.ui)
+            implementation(libs.peekaboo.image.picker)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -105,6 +108,7 @@ android {
     }
     dependencies {
         debugImplementation(compose.uiTooling)
+        commonMainApi(libs.permissions.compose)
     }
 }
 
