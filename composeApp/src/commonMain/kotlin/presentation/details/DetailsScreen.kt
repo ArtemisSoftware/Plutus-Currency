@@ -178,12 +178,18 @@ data class DetailsScreen(val code: CurrencyCode): Screen {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
-                    IconButton(onClick = {
-//                    scope.launch {
-//                        permissionsController.providePermission(Permission.CAMERA)
-//                    }
-                    showCamera = true
-                    }) {
+                    IconButton(
+                        onClick = {
+                            if(hasPermissionAlready){
+                                showCamera = true
+                            }
+                            else {
+                                scope.launch {
+                                    permissionsController.providePermission(Permission.CAMERA)
+                                }
+                            }
+                        }
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Add,
                             contentDescription = ""
